@@ -111,7 +111,7 @@ public class HtmlReport implements Constants {
 
     public void appendAsset(Asset asset, int year) {
         //Check if there were errors
-        if(asset.hasErrors()) {
+        if (asset.hasErrors()) {
             appendError = true;
             appendError(asset.getError());
         }
@@ -182,7 +182,8 @@ public class HtmlReport implements Constants {
                 "<p>Payed exchange fees (Non stocks): <b>" + MoneyUtils.toStringHtml(exchangefeesNonStocks) + "</b></p>\n" +
                 "<p>Payed exchange fees: <b>" + MoneyUtils.toStringHtml(exchangefeesStocks.plus(exchangefeesNonStocks)) + "</b></p>\n" +
                 "<p>Payed fees: <b>" + MoneyUtils.toStringHtml(feesStocks.plus(feesNonStocks).plus(exchangefeesStocks).plus(exchangefeesNonStocks)) + "</b></p>\n" +
-                "<p>Profit/Loss (Fees included): <b>" + MoneyUtils.toStringHtml(plStocks.plus(plNonStocks).plus(feesStocks).plus(feesNonStocks).plus(exchangefeesStocks).plus(exchangefeesNonStocks)) + "</b></p>\n");
+                "<p>Profit/Loss (Fees included): <b>" + MoneyUtils.toStringHtml(plStocks.plus(plNonStocks).plus(feesStocks).plus(feesNonStocks).plus(exchangefeesStocks).plus(exchangefeesNonStocks)) + "</b></p>\n")
+        ;
     }
 
     public void appendError(String errorMessage) {

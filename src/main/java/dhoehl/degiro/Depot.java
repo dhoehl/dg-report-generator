@@ -63,7 +63,7 @@ public class Depot {
 
     private void readTransactions(File transactions) {
         Table table = CsvReader.readDegiro(transactions);
-        mTransactionParser =  new TransactionParser(table);
+        mTransactionParser = new TransactionParser(table);
         mTransactions = mTransactionParser.getParsedTransactions();
     }
 
@@ -122,12 +122,11 @@ public class Depot {
     }
 
     public BigMoney getProfitLoss(Asset.Type type) {
-        BigMoney profitLoss = null;
+        BigMoney profitLoss = BigMoney.zero(mCurrency);
         for (Map.Entry<String, Asset> entrySet : mAssets.entrySet()) {
             Asset asset = entrySet.getValue();
             if (asset.getType() == type && asset.getProfitLoss() != null) {
-                if (profitLoss == null) profitLoss = asset.getProfitLoss();
-                else profitLoss = profitLoss.plus(asset.getProfitLoss());
+                profitLoss = profitLoss.plus(asset.getProfitLoss());
             }
         }
         return profitLoss;
@@ -139,12 +138,11 @@ public class Depot {
 
 
     public BigMoney getProfitLoss(Asset.Type type, int year) {
-        BigMoney profitLoss = null;
+        BigMoney profitLoss = BigMoney.zero(mCurrency);
         for (Map.Entry<String, Asset> entrySet : mAssets.entrySet()) {
             Asset asset = entrySet.getValue();
             if (asset.getType() == type && asset.getProfitLoss(year) != null) {
-                if (profitLoss == null) profitLoss = asset.getProfitLoss(year);
-                else profitLoss = profitLoss.plus(asset.getProfitLoss(year));
+                profitLoss = profitLoss.plus(asset.getProfitLoss(year));
             }
         }
         return profitLoss;
@@ -217,7 +215,7 @@ public class Depot {
     public String toStringHtml() {
         HtmlReport htmlReport = new HtmlReport();
         //Check if there were parsing errors
-        if(mTransactionParser.hasParsingErrors())
+        if (mTransactionParser.hasParsingErrors())
             htmlReport.appendErrorHeader();
 
         //First section will be a complete overview over all years
@@ -252,8 +250,8 @@ public class Depot {
                     getProfitLoss(Asset.Type.OTHER, i),
                     getPaidFees(Asset.Type.STOCK, i),
                     getPaidFees(Asset.Type.OTHER, i),
-                    getPaidExchangeFees(Asset.Type.STOCK,i),
-                    getPaidExchangeFees(Asset.Type.OTHER,i),
+                    getPaidExchangeFees(Asset.Type.STOCK, i),
+                    getPaidExchangeFees(Asset.Type.OTHER, i),
                     BigMoney.zero(mCurrency)
             );
             for (Asset asset : new TreeSet<>(mAssets.values())) {
@@ -265,9 +263,9 @@ public class Depot {
         }
 
         //If there were errors append them now
-        if(mTransactionParser.hasParsingErrors())
-            for(ParsingError error : mTransactionParser.getParsingErrors())
-            htmlReport.appendError(error.getErrorMessage());
+        if (mTransactionParser.hasParsingErrors())
+            for (ParsingError error : mTransactionParser.getParsingErrors())
+                htmlReport.appendError(error.getErrorMessage());
 
 
         return htmlReport.toString();

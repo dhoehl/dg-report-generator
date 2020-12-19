@@ -9,7 +9,7 @@ You can of course open issues or provide me with the line of csv that is not par
 
 # Usage
 
-Either use the provided *.jar file (/target/DgReportGenerator-0.1b-shaded) and the simple GUI to create your report or execute this using the command line like so:
+Either use the provided *.jar file (/target/DgReportGenerator-*-shaded) and the simple GUI to create your report or execute this using the command line like so:
 
 java DgReportGenerator "<path-to-your-csv/csvFile.csv>"
 

@@ -1,4 +1,4 @@
-# DG report generator
+# DeGiro report generator
 Inoffical report generator for csv files exported from a DEGIRO (C) depot.
 
 This tool generates a HTML document with an overview about all the transactions in your depot (including the current year, which foremost was the reason I built this tool)

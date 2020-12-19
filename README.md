@@ -14,7 +14,7 @@ Either use the provided *.jar file (/target/DgReportGenerator-0.1b-shaded) and t
 java DgReportGenerator "<path-to-your-csv/csvFile.csv>"
 
 # Known issues
-The exported csv do NOT provide any hint of wether the asset is a sock or not. Right now this is determined by analysing the name.
+The exported csv does NOT provide any hint of whether the asset is a sock or not. Right now this is determined by analysing the name.
 This of course is an incomplete list and also introduce subtle bugs. If a stock contains the same characters it will be in a wrong group.
 
 
